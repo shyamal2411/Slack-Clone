@@ -11,7 +11,7 @@ import FileCopyIcon from "@material-ui/icons/FileCopy";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 import AppsIcon from "@material-ui/icons/Apps";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-// import SidebarOption from "./SidebarOption";
+import SidebarOption from "./SidebarOption";
 
 function Sidebar() {
   return (
@@ -26,14 +26,14 @@ function Sidebar() {
         </SidebarInfo>
         <CreateIcon />
       </SidebarHeader>
-      {/* <SidebarOption Icon={InsertionCommentIcon} title="Threads" />
+      <SidebarOption Icon={InsertionCommentIcon} title="Threads" />
       <SidebarOption Icon={InboxIcon} title="Mentions & reactions" />
       <SidebarOption Icon={DraftsIcon} title="Saved items" />
       <SidebarOption Icon={BookmarkBorderIcon} title="Channel browser" />
       <SidebarOption Icon={PeopleAltIcon} title="People & user groups"/>
       <SidebarOption Icon={AppsIcon} title="Apps"/>
       <SidebarOption Icon={FileCopyIcon} title="File Browser"/>
-      <SidebarOption Icon={ExpandLessIcon} title="Show less"/>  */}
+      <SidebarOption Icon={ExpandLessIcon} title="Show less"/> 
     </SidebarContainer>
   );
 }
