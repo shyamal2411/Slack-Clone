@@ -15,6 +15,7 @@ function App() {
       <Sidebar/>
       <Switch>
           <Route path="/" exact>
+          
             {/* Chat component  */}
           </Route>
         </Switch>
