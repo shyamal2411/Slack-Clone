@@ -13,8 +13,12 @@ import AppsIcon from "@material-ui/icons/Apps";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import SidebarOption from "./SidebarOption";
 import AddIcon from "@material-ui/icons/Add";
+import {useCollection} from 'react-firebase-hooks/firestore';
+import {db} from '../firebase';
+
 
 function Sidebar() {
+  const [channels, loading, error] = useCollection(db.collection("rooms"));
   return (
     <SidebarContainer>
       <SidebarHeader>
@@ -31,14 +35,23 @@ function Sidebar() {
       <SidebarOption Icon={InboxIcon} title="Mentions & reactions" />
       <SidebarOption Icon={DraftsIcon} title="Saved items" />
       <SidebarOption Icon={BookmarkBorderIcon} title="Channel browser" />
-      <SidebarOption Icon={PeopleAltIcon} title="People & user groups"/>
-      <SidebarOption Icon={AppsIcon} title="Apps"/>
-      <SidebarOption Icon={FileCopyIcon} title="File Browser"/>
-      <SidebarOption Icon={ExpandLessIcon} title="Show less"/> 
-      <hr/>
-      <SidebarOption Icon={ExpandMoreIcon} title="Channels"/>
-      <hr/>
-      <SidebarOption Icon={AddIcon} addChannelOption title="Add Channel"/>
+      <SidebarOption Icon={PeopleAltIcon} title="People & user groups" />
+      <SidebarOption Icon={AppsIcon} title="Apps" />
+      <SidebarOption Icon={FileCopyIcon} title="File Browser" />
+      <SidebarOption Icon={ExpandLessIcon} title="Show less" />
+      <hr />
+      <SidebarOption Icon={ExpandMoreIcon} title="Channels" />
+      <hr />
+      <SidebarOption Icon={AddIcon} addChannelOption title="Add Channel" />
+      
+      {channels?.docs.map((doc) => (
+        <SidebarOption
+          key={doc.id}
+          id={doc.id}
+          addChannelOption
+          title={doc.data().name}
+        />
+      ))}
     </SidebarContainer>
   );
 }
@@ -53,7 +66,7 @@ const SidebarContainer = styled.div`
   max-width: 260px;
   margin-top: 60px;
 
-  >hr{
+  > hr {
     margin-top: 10px;
     margin-bottom: 10px;
     border: 1px solid #49274b;
@@ -66,7 +79,7 @@ const SidebarHeader = styled.div`
   /* padding-bottom:10px; */
   padding: 13px;
 
-  >MuiSvgIcon-root{
+  > MuiSvgIcon-root {
     padding: 8px;
     color: #49274b;
     font-size: 18px;
@@ -77,8 +90,8 @@ const SidebarHeader = styled.div`
 
 const SidebarInfo = styled.div`
   flex: 1;
-  >h1{
-    font-size:20px;
+  > h1 {
+    font-size: 20px;
   }
   > h2 {
     font-size: 15px;
